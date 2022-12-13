@@ -41,12 +41,13 @@ module.exports = (db) => {
 
   //create beer
   router.post('/add', async (req, res) => {
-    const values = [req.body.name, req.body.image, req.body.note];
+    const values = [req.body.name, req.body.image, req.body.note, req.body.star];
     const createBeer = `INSERT INTO beers(
       name,
       image,
-      note
-      ) VALUES ($1, $2, $3 ) RETURNING *;`;
+      note,
+      star
+      ) VALUES ($1, $2, $3, $4 ) RETURNING *;`;
     try {
       const newBeer = await db.query(createBeer, values);
       res.json(newBeer.rows);
@@ -62,9 +63,9 @@ module.exports = (db) => {
   
   router.put('/:id', async (req, res) => {
     const { id } = req.params;
-    const values = [req.body.name, req.body.image, req.body.note];
+    const values = [req.body.name, req.body.image, req.body.note, req.body.star];
     console.log(id);
-    console.log(values);
+    console.log(req.body.star);
     let editBeer = `UPDATE beers SET `
     
     if (req.body.name) {
@@ -74,7 +75,10 @@ module.exports = (db) => {
       editBeer += `image = $2 , `
     }
     if (req.body.note) {
-      editBeer += `note = $3 `
+      editBeer += `note = $3 , `
+    }
+    if (req.body.star) {
+      editBeer += `star = $4 `
     }
     editBeer = editBeer.slice(0, -1);
 

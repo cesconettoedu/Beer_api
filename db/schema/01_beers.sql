@@ -3,5 +3,6 @@ CREATE TABLE beers(
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(250),
   image VARCHAR(250),
-  note VARCHAR(250)
+  note VARCHAR(250),
+  star INT DEFAULT 0
 );
