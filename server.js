@@ -23,7 +23,6 @@ const beers = require("./routes/beers")
 
 app.use('/api/beers', beers(db));
 
-
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
