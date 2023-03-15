@@ -15,7 +15,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
+    "start": "server.js",
     "db:reset": "node bin/resetdb.js"
   },
   "devDependencies": {
